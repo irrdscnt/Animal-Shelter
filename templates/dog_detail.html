@@ -1,0 +1,33 @@
+<!-- dog_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+    <title>{{ dog.name }} Details</title>
+</head>
+<body>
+
+  <h1>{{ dog.name }} Details</h1>
+  <ul>
+    <li><strong>Name:</strong> {{ dog.name }}</li>
+    <li><strong>Sex:</strong> {{ dog.sex }}</li>
+    <li><strong>Age:</strong> {{ dog.age }}</li>
+    <li><strong>Size:</strong> {{ dog.size }}</li>
+    <li><strong>Temper:</strong> {{ dog.temper }}</li>
+    <li><strong>Color:</strong> {{ dog.color }}</li>
+    <li><strong>Description:</strong> {{ dog.description }}</li>
+    <li><strong>Comments:</strong> {{ dog.comments }}</li>
+    {% if dog.photo_base64 %}
+    <strong>Photo:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="50%"><br>
+    {% else %}
+        <p>No photo available</p>
+    {% endif %}
+  </ul>
+
+  <a href="{% url 'dog_list' %}" class="back-btn">Back to List</a>
+
+</body>
+</html>

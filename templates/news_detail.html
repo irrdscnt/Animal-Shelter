@@ -1,0 +1,30 @@
+<!-- dog_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+    <title>{{ news.title }} Details</title>
+</head>
+<body>
+
+  <h1>{{ news.title }} Details</h1>
+  <ul>
+    <li><strong>Title:</strong> {{ news.title }}</li>
+    <li><strong>Title1:</strong> {{ news.title1 }}</li>
+    <li><strong>Description:</strong> {{ news.description }}</li>
+
+    {% if news.photo_base64 %}
+    <strong>Photo:</strong> <img src="data:image/png;base64,{{ news.photo_base64 }}" alt="{{ news.name }} photo" width="50%"><br>
+    {% else %}
+        <p>No photo available</p>
+    {% endif %}
+  </ul>
+  <a href="{% url 'update_news' news.news_id %}" class="update-btn">Update News</a>
+
+  <a href="{% url 'home' %}" class="back-btn">Back to List</a>
+
+</body>
+</html>

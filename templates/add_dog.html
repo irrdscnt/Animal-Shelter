@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Dog</title>
+</head>
+<body>
+
+<h2>Add Dog</h2>
+
+<form method="post" enctype="multipart/form-data" {% if dog_id %}action="{% url 'update_dog' dog_id %}"{% else %}action="{% url 'add_dog' %}"{% endif %}>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

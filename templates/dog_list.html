@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog List</title>
+</head>
+<body>
+    <h1>List of Dogs</h1>
+    <style>
+     ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    li {
+        width: 30%;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+        width: 80%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .details-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+        .filter-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px; /* регулируйте отступ сверху под фильтры */
+        }
+
+        .filter-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between; /* Распределение фильтров по горизонтали */
+            margin-bottom: 20px; /* Регулируйте отступ между фильтрами */
+        }
+
+
+        .filter-btn, .reset-btn {
+            display: inline-block;
+            margin-top: 10px; /* Adjust as needed */
+            padding: 10px;
+            background-color: #4CAF50; /* Green color, you can change it */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .reset-btn {
+            background-color: #f44336; /* Red color, you can change it */
+        }
+    </style>
+</head>
+<body>
+
+<form method="get" class="filter-form" action="{% url 'dog_list' %}">
+    <div class="filter-row">
+        <div class="filter-row">
+            {{ form.age.label_tag }}
+            {{ form.age }}
+        </div>
+        <div class="filter-row">
+            {{ form.size.label_tag }}
+            {{ form.size }}
+        </div>
+        <div class="filter-row">
+            {{ form.color.label_tag }}
+            {{ form.color }}
+        </div>
+        <div class="filter-row">
+            {{form.temper.label_tag}}
+            {{form.temper}}
+
+        </div>
+    </div>
+    <button class="filter-btn" type="submit">Filter</button>
+    <a href="{% url 'dog_list' %}?reset=1" class="reset-btn">Reset Filter</a>
+</form>
+
+<ul>
+    {% for dog in animals %}
+        <li>
+            <strong>Name:</strong> {{ dog.name }}<br>
+            <strong>Sex:</strong> {{ dog.sex }}<br>
+            <strong>Age:</strong> {{ dog.age }}<br>
+            {% if dog.photo_base64 %}
+            <strong>Photo:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="100"><br>
+            {% else %}
+                <p>No photo available</p>
+            {% endif %}
+            <a href="{% url 'dog_detail' dog.dog_id %}" class="details-btn">Get to know me more!</a>
+
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
