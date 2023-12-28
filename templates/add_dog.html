@@ -8,7 +8,7 @@
 
 <h2>Add Dog</h2>
 
-<form method="post" enctype="multipart/form-data" {% if dog_id %}action="{% url 'update_dog' dog_id %}"{% else %}action="{% url 'add_dog' %}"{% endif %}>
+<form method="post" enctype="multipart/form-data" {% if animal_id %}action="{% url 'update_dog' animal_id %}"{% else %}action="{% url 'add_dog' %}"{% endif %}>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>

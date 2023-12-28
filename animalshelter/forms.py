@@ -1,18 +1,29 @@
 from django import forms
-from .models import Dog,News
+from .models import Animal,News,Review
 
-class DogForm(forms.ModelForm):
+class AnimalForm(forms.ModelForm):
     photo = forms.FileField(widget=forms.ClearableFileInput, required=False)  # Используем FileField для загрузки файла
 
     class Meta:
-        model = Dog
+        model = Animal
         fields = '__all__'
 
-class DogFilterForm(forms.Form):
+class ReviewForm(forms.ModelForm):
+    photo = forms.FileField(widget=forms.ClearableFileInput, required=False)  # Используем FileField для загрузки файла
+
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+class AnimalFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # Заполните CHOICES значениями из базы данных
+        self.fields['type_of_animal'] = forms.ChoiceField(
+            choices=self.get_choices('type_of_animal'),
+            required=False,
+        )
         self.fields['sex'] = forms.ChoiceField(
             choices=self.get_choices('sex'),
             required=False,
@@ -35,7 +46,7 @@ class DogFilterForm(forms.Form):
         )
 
     def get_choices(self, field_name):
-        values = Dog.objects.values_list(field_name, flat=True).distinct()
+        values = Animal.objects.values_list(field_name, flat=True).distinct()
         return [('', 'Any')] + [(value, value.capitalize()) for value in values]
         
     def clear_filters(self):
@@ -87,3 +98,14 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = '__all__'
+
+# class AddReview(forms.ModelForm):
+#     class Meta(forms.ModelForm):
+#         model = Review
+#         fields = ("name", "description", "email")
+
+#         widgets = {
+#             "name": forms.TextInput(attrs={"class": "form-control"}),
+#             "description": forms.TextInput(attrs={"class": "form-control"}),
+#             "email": forms.TextInput(attrs={"class": "form-control"}),
+#         }

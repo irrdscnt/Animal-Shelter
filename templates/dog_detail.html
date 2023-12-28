@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'detail.css' %}">
     <title>{{ dog.name }} Details</title>
+    <button>
+      <a href="{% url 'dog_list' %}" class="back-btn">Back to List</a>
+    </button>
+
 </head>
 <body>
 
@@ -27,7 +31,6 @@
     {% endif %}
   </ul>
 
-  <a href="{% url 'dog_list' %}" class="back-btn">Back to List</a>
 
 </body>
 </html>

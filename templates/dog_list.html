@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog List</title>
+    <title>Animal List</title>
 </head>
 <body>
-    <h1>List of Dogs</h1>
+    <h1>List of Animals</h1>
+    <form method="get" action="{% url 'search' %}">
+        {{ filter.form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    
+    <ul>
+        {% for animal in filter.qs %}
+
+            <li>
+                <a href="{% url 'dog_detail' animal.animal_id %}">
+
+                {{ animal.name }} - {{ animal.breed }} - {{ animal.color }} 
+            </li>
+        {% endfor %}
+    </ul>
     <style>
      ul {
         list-style-type: none;
@@ -84,6 +99,10 @@
 <form method="get" class="filter-form" action="{% url 'dog_list' %}">
     <div class="filter-row">
         <div class="filter-row">
+            {{ form.type_of_animal.label_tag }}
+            {{ form.type_of_animal }}
+        </div>
+        <div class="filter-row">
             {{ form.age.label_tag }}
             {{ form.age }}
         </div>
@@ -116,7 +135,7 @@
             {% else %}
                 <p>No photo available</p>
             {% endif %}
-            <a href="{% url 'dog_detail' dog.dog_id %}" class="details-btn">Get to know me more!</a>
+            <a href="{% url 'dog_detail' dog.animal_id %}" class="details-btn">Get to know me more!</a>
 
         </li>
     {% endfor %}
