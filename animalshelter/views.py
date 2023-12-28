@@ -70,9 +70,12 @@ def dog_list(request):
         size = form.cleaned_data.get('size')
         color = form.cleaned_data.get('color')
         temper = form.cleaned_data.get('temper')
+        type_of_animal=form.cleaned_data.get('type_of_animal')
 
         animals = Animal.objects.all()
-
+        if type_of_animal:
+            animals=animals.filter(type_of_animal=type_of_animal)
+            
         if age:
             animals = animals.filter(age=age)
 
