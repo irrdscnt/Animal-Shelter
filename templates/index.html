@@ -57,9 +57,13 @@
             </div>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="{% url 'home' %}">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="#info_section">Связаться с нами</a>
+                {% if user.is_admin %}
+                <a href="{% url 'add_dog' %}">Добавить животное в базу данных</a>
+
+                {% endif %}
               </div>
             </div>
           </div>
@@ -152,20 +156,20 @@
         <div class="box b1">
           <div class="img-box">
             <a href="{% url 'dog_list' %}">
-              <img src="static/images/dog.jpg" alt="">
+              <img src="static/images/dogcat.jpg" alt="">
 
             </a>
           </div>
           <div class="detail-box">
             <h5>
-              Наши игривые собаки
+              Наши прекрасные животные
             </h5>
             <p>
               Нажмите чтобы познакомиться поближе
             </p>
           </div>
         </div>
-        <div class="box b2">
+        <!-- <div class="box b2">
           <div class="img-box">
             <img src="static/images/cat.jpg" alt="">
           </div>
@@ -177,7 +181,7 @@
               Нажмите чтобы познакомиться поближе
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -230,7 +234,8 @@
         <img src="static/images/heading-img.png" alt="">
         <h2>Почему стоит выбрать нас?        </h2>
         <p>
-          It is a long established fact that a reader will be distracted by the readable content of a
+          Мы стараемся окружить любовью и заботой всех наших подопечных. В нашем приюте все животные находятся под присмотром
+          опытных ветеринаров и получают питательную пищу.
         </p>
       </div>
       <div class="us_container">
@@ -243,7 +248,7 @@
           </div>
           <div class="detail-box">
             <h6>
-              PET NUTRITIONISTS
+              Качественное питание
             </h6>
           </div>
         </div>
@@ -254,9 +259,9 @@
           <div class="img2-box">
             <img src="static/images/dog.png" alt="">
           </div>
-          <div class="static/detail-box">
+          <div class="detail-box">
             <h6>
-              STANDARDS
+              Счастливые животные
             </h6>
           </div>
         </div>
@@ -269,7 +274,7 @@
           </div>
           <div class="detail-box">
             <h6>
-              QUALITY & SAFETY
+              Успешное принятие в семью
             </h6>
           </div>
         </div>
@@ -277,7 +282,7 @@
       <div class="btn-box">
         <a href="">
           <span>
-            Read More
+            Узнать больше
           </span>
           <img src="static/images/link-arrow.png" alt="">
         </a>
@@ -294,23 +299,23 @@
       <div class="heading_container">
         <img src="static/images/heading-img.png" alt="">
         <h2>
-          Our Dog Food
+          Корм для животных
         </h2>
         <p>
-          It is a long established fact that a reader will be distracted by the readable content of a
+          У нас Вы можете приобрести корм для кошек или собак от наших партнеров.
         </p>
       </div>
       <div class="food_container">
         <div class="box">
           <div class="img-box">
-            <img src="static/images/f1.png" alt="">
+            <img src="static/images/catfood.jpg" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Basic
+              Meow Mix
             </h6>
             <h3>
-              <span>$</span>100
+              <span>KGS</span>2000
             </h3>
             <a href="">
               Buy Now
@@ -319,33 +324,35 @@
         </div>
         <div class="box">
           <div class="img-box">
-            <img src="static/images/f2.png" alt="">
+            <img src="static/images/felix-cat-food.png" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Medium
+              Felix
             </h6>
             <h3>
-              <span>$</span>200
+              <span>KGS</span>35
             </h3>
             <a href="">
               Buy Now
+
             </a>
           </div>
         </div>
         <div class="box">
           <div class="img-box">
-            <img src="static/images/f3.png" alt="">
+            <img src="static/images/pedigree.jpg" alt="">
           </div>
           <div class="detail-box">
             <h6>
-              Standard
+              Pedigree
             </h6>
             <h3>
-              <span>$</span>300
+              <span>KGS</span>1000
             </h3>
             <a href="">
               Buy Now
+
             </a>
           </div>
         </div>
@@ -482,28 +489,29 @@
             <div class="heading_container">
               <img src="static/images/heading-img.png" alt="">
               <h2>
-                Request A Call Back
+                Вас заинтересовал кто-то из наших пушистых друзей?
               </h2>
               <p>
-                It is a long established fact that a reader will be distracted by the
+                Оставьте ваши контакты и наши коллеги свяжутся с Вами и проконсультируют насчет того,
+                как можно взять к себе выбранного Вами животного!
               </p>
             </div>
             <form action="">
               <div>
-                <input type="text" placeholder="Full Name " />
+                <input type="text" placeholder="ФИО " />
               </div>
               <div>
-                <input type="text" placeholder="Phone number" />
+                <input type="text" placeholder="Номер телефона" />
               </div>
               <div>
                 <input type="email" placeholder="Email" />
               </div>
               <div>
-                <input type="text" class="message-box" placeholder="Message" />
+                <input type="text" class="message-box" placeholder="Укажите, кто конкретно Вас интересует" />
               </div>
               <div class="d-flex ">
                 <button>
-                  SEND
+                  Отправить
                 </button>
               </div>
             </form>
@@ -524,24 +532,24 @@
 
 
   <!-- info section -->
-  <section class="info_section ">
+  <section id="info_section" class="info_section ">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-3">
           <div class="info_contact">
             <h5>
-              CONTACT INFO
+              КОНТАКТЫ
             </h5>
             <div>
               <img src="static/images/call.png" alt="" />
               <p>
-                +01 1234567890
+                +996 553 451 567
               </p>
             </div>
             <div>
               <img src="static/images/mail.png" alt="" />
               <p>
-                demo@gmail.com
+                animalshelter@gmail.com
               </p>
             </div>
           </div>
@@ -549,16 +557,16 @@
         <div class="col-md-6 col-lg-3">
           <div class="info_time">
             <h5>
-              Opening Hours Shop
+              ВРЕМЯ РАБОТЫ
             </h5>
             <div>
               <p>
-                Monday to friday
+                Понедельник - Пятница
               </p>
             </div>
             <div>
               <p>
-                07:00 am to 04:00 pm
+                С 09:00 до 18:00
               </p>
             </div>
           </div>
@@ -567,7 +575,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="info_social">
             <h5>
-              social media
+              Мы в соцсетях
             </h5>
             <div class="social_container">
               <div>
@@ -596,12 +604,12 @@
         <div class="col-md-6 col-lg-3">
           <div class="info_form pl-lg-4">
             <h5>
-              Newsletter
+              РАССЫЛКА
             </h5>
             <form action="">
-              <input type="text" placeholder="Enter Your Email" />
+              <input type="text" placeholder="Введите ваш Email" />
               <button type="submit">
-                Subscribe
+                Подписаться на рассылку
               </button>
             </form>
           </div>

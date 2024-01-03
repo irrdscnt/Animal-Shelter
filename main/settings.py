@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'animalshelter',
+    'accounts.apps.AccountsConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -110,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTH_USER_MODEL = "accounts.CustomUser" # newAUTH_USER_MODEL = "accounts.CustomUser" # new
 
 LOGIN_REDIRECT_URL = "/" # new
 LOGOUT_REDIRECT_URL = "/" # new

@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal List</title>
-</head>
+{% extends "header.html" %}
+{% block main %}
 <body>
-    <h1>List of Animals</h1>
-    <form method="get" action="{% url 'search' %}">
+    <h1>Список всех животных</h1>
+    <!-- <form method="get" action="{% url 'search' %}">
         {{ filter.form.as_p }}
         <button type="submit">Search</button>
-    </form>
+    </form> -->
+    <a href="{% url 'home' %}" class="back-btn">Назад на главную</a>
+
     
     <ul>
         {% for animal in filter.qs %}
@@ -23,6 +20,7 @@
         {% endfor %}
     </ul>
     <style>
+
      ul {
         list-style-type: none;
         padding: 0;
@@ -30,7 +28,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-
+    h1{
+        text-align: center;
+    }
     li {
         width: 30%;
         margin-bottom: 20px;
@@ -70,6 +70,8 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between; /* Распределение фильтров по горизонтали */
+            gap: 10px; /* Пробел между элементами */
+
             margin-bottom: 20px; /* Регулируйте отступ между фильтрами */
         }
 
@@ -92,6 +94,12 @@
         .reset-btn {
             background-color: #f44336; /* Red color, you can change it */
         }
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('/static/images/client-bg.jpg') center center fixed;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
@@ -99,47 +107,55 @@
 <form method="get" class="filter-form" action="{% url 'dog_list' %}">
     <div class="filter-row">
         <div class="filter-row">
-            {{ form.type_of_animal.label_tag }}
+            Выберите тип животного
+            <!-- {{ form.type_of_animal.label_tag }} -->
             {{ form.type_of_animal }}
         </div>
         <div class="filter-row">
-            {{ form.age.label_tag }}
+            Возраст
+            <!-- {{ form.age.label_tag }} -->
             {{ form.age }}
         </div>
         <div class="filter-row">
-            {{ form.size.label_tag }}
+            Размер
+            <!-- {{ form.size.label_tag }} -->
             {{ form.size }}
         </div>
         <div class="filter-row">
-            {{ form.color.label_tag }}
+            Цвет
+            <!-- {{ form.color.label_tag }} -->
             {{ form.color }}
         </div>
         <div class="filter-row">
-            {{form.temper.label_tag}}
+            Характер
+            <!-- {{form.temper.label_tag}} -->
             {{form.temper}}
 
         </div>
     </div>
-    <button class="filter-btn" type="submit">Filter</button>
-    <a href="{% url 'dog_list' %}?reset=1" class="reset-btn">Reset Filter</a>
+    <button class="filter-btn" type="submit">Фильтровать</button>
+    <a href="{% url 'dog_list' %}?reset=1" class="reset-btn">Сбросить фильтр</a>
 </form>
 
 <ul>
     {% for dog in animals %}
         <li>
-            <strong>Name:</strong> {{ dog.name }}<br>
-            <strong>Sex:</strong> {{ dog.sex }}<br>
-            <strong>Age:</strong> {{ dog.age }}<br>
+            <strong>Имя:</strong> {{ dog.name }}<br>
+            <strong>Пол:</strong> {{ dog.sex }}<br>
+            <strong>Возраст:</strong> {{ dog.age }}<br>
             {% if dog.photo_base64 %}
-            <strong>Photo:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="100"><br>
+            <strong>Фото:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="100"><br>
             {% else %}
                 <p>No photo available</p>
             {% endif %}
-            <a href="{% url 'dog_detail' dog.animal_id %}" class="details-btn">Get to know me more!</a>
-
+            <a href="{% url 'dog_detail' dog.animal_id %}" class="details-btn">Узнай меня ближе!</a>
+            {% if user.is_admin%}
+            <a href="{% url 'update_dog' dog.animal_id %}" class="details-btn">Изменить данные</a>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>
 
 </body>
-</html>
+
+{% endblock main %}

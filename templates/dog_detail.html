@@ -5,27 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'detail.css' %}">
-    <title>{{ dog.name }} Details</title>
+    <link rel="stylesheet" href="/static/css/detail.css">
+    <title>Подробнее о {{ dog.name }}</title>
     <button>
-      <a href="{% url 'dog_list' %}" class="back-btn">Back to List</a>
+      <a href="{% url 'dog_list' %}" class="back-btn">Назад</a>
     </button>
 
 </head>
 <body>
 
-  <h1>{{ dog.name }} Details</h1>
+  <h1>Подробнее о {{ dog.name }} </h1>
   <ul>
-    <li><strong>Name:</strong> {{ dog.name }}</li>
-    <li><strong>Sex:</strong> {{ dog.sex }}</li>
-    <li><strong>Age:</strong> {{ dog.age }}</li>
-    <li><strong>Size:</strong> {{ dog.size }}</li>
-    <li><strong>Temper:</strong> {{ dog.temper }}</li>
-    <li><strong>Color:</strong> {{ dog.color }}</li>
-    <li><strong>Description:</strong> {{ dog.description }}</li>
-    <li><strong>Comments:</strong> {{ dog.comments }}</li>
+    <li><strong>Имя:</strong> {{ dog.name }}</li>
+    <li><strong>Пол:</strong> {{ dog.sex }}</li>
+    <li><strong>Возраст:</strong> {{ dog.age }}</li>
+    <li><strong>Размер:</strong> {{ dog.size }}</li>
+    <li><strong>Характер:</strong> {{ dog.temper }}</li>
+    <li><strong>Цвет:</strong> {{ dog.color }}</li>
+    <li><strong>Описание:</strong> {{ dog.description }}</li>
+    <li><strong>Комментарии:</strong> {{ dog.comments }}</li>
     {% if dog.photo_base64 %}
-    <strong>Photo:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="50%"><br>
+    <strong>Фото:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="50%"><br>
     {% else %}
         <p>No photo available</p>
     {% endif %}
