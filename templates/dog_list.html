@@ -41,7 +41,7 @@
     }
 
     img {
-        width: 80%;
+        /* width: 80%; */
         max-height: 200px;
         object-fit: cover;
         border-radius: 5px;
@@ -144,7 +144,7 @@
             <strong>Пол:</strong> {{ dog.sex }}<br>
             <strong>Возраст:</strong> {{ dog.age }}<br>
             {% if dog.photo_base64 %}
-            <strong>Фото:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="100"><br>
+            <strong>Фото:</strong> <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width=350px"><br>
             {% else %}
                 <p>No photo available</p>
             {% endif %}

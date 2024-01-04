@@ -286,7 +286,7 @@ a:focus {
   position: relative;
 }
 .slider_section .detail-box h1 span {
-  color: #e7d619;
+  color: red;
 }
 .slider_section .detail-box .btn-box {
   display: flex;
