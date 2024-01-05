@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import mark_safe
 
 class Animal(models.Model):
     animal_id = models.AutoField(primary_key=True)
@@ -38,7 +39,7 @@ class Review(models.Model):
     def __str__(self):
         return self.name
 
-class AdoptionForm(models.Model):
+class Adoption(models.Model):
     name = models.CharField(max_length=40, null=True)
     phone = models.CharField(max_length=40, null=True)
     email=models.CharField(max_length=255)

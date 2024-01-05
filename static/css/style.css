@@ -630,6 +630,43 @@ a:focus {
   color: #0a2050;
 }
 
+h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+form button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+form button:hover {
+  background-color: #45a049;
+}
+form label {
+  display: block;
+  margin-bottom: 8px;
+}
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .client_section {
   background-image: url(../images/client-bg.jpg);
   background-size: cover;

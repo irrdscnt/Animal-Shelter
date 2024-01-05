@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import (CreateView, DeleteView, ListView,
                                   TemplateView, UpdateView)
-from .models import Animal,News,Review
+from .models import Animal,News,Review,Adoption
 from .forms import AnimalForm,AnimalFilterForm,NewsForm,ReviewForm,AdoptionForm
 import base64
 from .filters import AnimalFilter
@@ -42,7 +42,15 @@ def index(request):
                 dog.photo_base64 = base64.b64encode(dog.photo).decode("utf-8")
             else:
                 dog.photo_base64 = None
-    return render(request, 'index.html', {'news_items': news_items,'form':form, 'review_list': review_list})
+    animals = Animal.objects.all()
+    if request.method == 'POST':
+        adoptform = AdoptionForm(request.POST)
+        if adoptform.is_valid():
+            adoptform.save()
+            return redirect('thank_you_page')
+    else:
+        adoptform = AdoptionForm()
+    return render(request, 'index.html', {'news_items': news_items,'form':form, 'review_list': review_list,'adoptform':adoptform})
 
 def dog_detail(request, animal_id):
     dog = Animal.objects.get(pk=animal_id)
@@ -224,12 +232,19 @@ def delete_news(request, news_id):
     news.delete()
     return redirect('home')  
 
-def delete_review(request, review_id):
-    review = get_object_or_404(Review, pk=review_id)
+def delete_review(request, id):
+    review = get_object_or_404(Review, pk=id)
     review.delete()
     return redirect('home')  
 
+def delete_adoption(request, id):
+    adoption = get_object_or_404(Adoption, pk=id)
+    adoption.delete()
+    return redirect('adoption_requests')  
 
+def adoption_requests(request):
+    adoption_forms = Adoption.objects.all()
+    return render(request, 'adoption_requests.html', {'adoption_forms': adoption_forms})
 # class AddReview(CreateView):
 #     model = Review
 #     form_class = ReviewForm

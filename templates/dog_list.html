@@ -1,14 +1,14 @@
-{% extends "header.html" %}
-{% block main %}
 <body>
     <h1>Список всех животных</h1>
+    <link rel="stylesheet" type="text/css" href="/static/css/dog_list.css" />
+
     <!-- <form method="get" action="{% url 'search' %}">
         {{ filter.form.as_p }}
         <button type="submit">Search</button>
     </form> -->
-    <a href="{% url 'home' %}" class="back-btn">Назад на главную</a>
+       
+        <a href="{% url 'home' %}" class="filter-btn" > Назад на главную</a>
 
-    
     <ul>
         {% for animal in filter.qs %}
 
@@ -19,7 +19,6 @@
             </li>
         {% endfor %}
     </ul>
-    <link rel="stylesheet" type="text/css" href="/static/css/dog_list.css" />
 </head>
 <body>
 
@@ -103,4 +102,3 @@
 
 </body>
 
-{% endblock main %}

@@ -1,5 +1,7 @@
 {% load static %}
 {% block main %}
+<link rel="stylesheet" href="/static/css/registration.css">
+<title>Registration</title>
 <main>
   <section class="signUp">
     <form class="form" method="post">{% csrf_token %}
@@ -17,11 +19,12 @@
       {{form.phone}}
     </label>
     <label class="id_is_admin" for="id_is_admin">
-      <span>Are you an admin?</span>
+      <h4>Are you an admin?</h4>
       {{form.is_admin}}
     </label>
     <label>
       <h4>Password</h4>
+      <span>Password must contain letters,numbers and special characters</span>
       {{form.password1}}
     </label>
     <label>

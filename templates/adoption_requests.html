@@ -1,0 +1,29 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все заявки на адопцию</title>
+    <link rel="stylesheet" href="/static/css/adoption.css">
+
+</head>
+
+<body>
+    <a href="{% url 'home' %}" class="back-btn custom-back-btn">Назад на главную</a>
+    <div class="adoption-container">
+        <h1>Заявки на адопцию</h1>
+        <ul>
+            {% for form in adoption_forms %}
+                <li>
+                    <strong>Имя:</strong> {{ form.name }}<br>
+                    <strong>Телефон:</strong> {{ form.phone }}<br>
+                    <strong>Email:</strong> {{ form.email }}<br>
+                    <strong>Комментарии:</strong>{{form.comments}}<br>
+                    <strong>Животное:</strong>{{form.animal}}<br>
+                    <!-- Другие поля из модели AdoptionForm -->
+                </li>
+                <a href="{% url 'delete_adoption' form.id %}" class="delete-btn">Удалить заявку</a>
+
+            {% endfor %}
+        </ul>
+    </div>
+</body>

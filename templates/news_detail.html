@@ -25,7 +25,8 @@
     {% endif %}
   </ul>
   {% if user.is_admin %}
-  <a href="{% url 'update_news' news.news_id %}" class="update-btn">Обновить новость</a>
+    <a href="{% url 'update_news' news.news_id %}" class="update-btn">Обновить новость</a>
+    <a href="{% url 'delete_news' news.news_id %}" class="delete-btn">Удалить новость</a>
   {% endif %}
   <a href="{% url 'home' %}" class="back-btn">Назад на главную</a>
 

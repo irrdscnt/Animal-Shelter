@@ -1,6 +1,7 @@
-{% block main %}
+<link rel="stylesheet" href="/static/css/login.css">
+<title>Log in</title>
+
 <main>
-  <h2 class="reservation__info"></h2>
   <section class="logIn">
     <form method="post" class="form">{% csrf_token %}
       <h2>Log in</h2>
@@ -16,4 +17,3 @@
     </form>
   </section>
 </main>
-{% endblock main %}
