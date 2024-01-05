@@ -1,5 +1,60 @@
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Dog</title>
+    <link rel="stylesheet" href="/static/css/detail.css">
+</head>
+<body>
+
+<div class="form-container">
+
+    <h2>Add Dog</h2>
+
+    <form method="post" enctype="multipart/form-data" {% if animal_id %}action="{% url 'update_dog' animal_id %}"{% else %}action="{% url 'add_dog' %}"{% endif %}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+        <!-- {% csrf_token %}
+        <label for="id_name">Name:</label>
+        {{ form.name }}
+        <br>
+        <label for="id_type_of_animal">Type of Animal:</label>
+        {{ form.type_of_animal }}
+        <br>
+        <label for="id_sex">Sex:</label>
+        {{ form.sex }}
+        <br>
+        <label for="id_breed">Breed:</label>
+        {{ form.breed }}
+        <br>
+        <label for="id_color">Color:</label>
+        {{ form.color }}
+        <br>
+        <label for="id_size">Size:</label>
+        {{ form.size }}
+        <br>
+        <label for="id_age">Age:</label>
+        {{ form.age }}
+        <br>
+        <label for="id_temper">Temper:</label>
+        {{ form.temper }}
+        <br>
+        <label for="id_photo">Photo:</label>
+        {{ form.photo }}
+        <br>
+        <button type="submit">Save</button> -->
+    </form>
+
+</div>
+
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Add Dog</title>
@@ -17,4 +72,4 @@
 </form>
 
 </body>
-</html>
+</html> -->

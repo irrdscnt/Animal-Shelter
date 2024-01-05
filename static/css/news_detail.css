@@ -1,3 +1,4 @@
+/* detail.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,49 +10,47 @@ body {
     height: 100vh;
 }
 
-.form-container {
+.details-container {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 50px;
+    padding: 20px;
     width: 80%;
     max-width: 600px;
     text-align: center;
-    margin-top: 350px; /* Добавленный отступ сверху */
 }
 
-
-h2 {
+h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-label {
-    display: inline-block;
-    width: 30%;
-    margin-bottom: 8px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-input, textarea {
-    width: 65%;
-    padding: 10px;
+ul li {
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+.update-btn,
+.back-btn {
     display: inline-block;
-}
-
-button {
-    background-color: #4CAF50;
-    color: #fff;
+    margin-top: 20px;
     padding: 10px 15px;
-    border: none;
+    text-decoration: none;
+    color: #fff;
+    background-color: #4CAF50;
     border-radius: 4px;
-    cursor: pointer;
 }
 
-button:hover {
+.update-btn:hover,
+.back-btn:hover {
     background-color: #45a049;
 }

@@ -1,11 +1,11 @@
-<!-- dog_detail.html -->
+<!-- dog_detail.html
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/detail.css">
+    <link rel="stylesheet" href="/static/css/animal_detail.css">
     <title>Подробнее о {{ dog.name }}</title>
     <button>
       <a href="{% url 'dog_list' %}" class="back-btn">Назад</a>
@@ -30,7 +30,53 @@
         <p>No photo available</p>
     {% endif %}
   </ul>
+  <h2>Заявка на усыновление</h2>
+  <form method="post" action="{% url 'dog_detail' dog.animal_id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Взять питомца</button>
+  </form>
 
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/animal_detail.css">
+    <title>Подробнее о {{ dog.name }}</title>
+    <button>
+      <a href="{% url 'dog_list' %}" class="back-btn">Назад</a>
+    </button>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-column">
+        <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo">
+    </div>
+    <div class="right-column">
+        <h1>Подробнее о {{ dog.name }} </h1>
+        <ul>
+            <li><strong>Имя:</strong> {{ dog.name }}</li>
+            <li><strong>Пол:</strong> {{ dog.sex }}</li>
+            <li><strong>Возраст:</strong> {{ dog.age }}</li>
+            <li><strong>Размер:</strong> {{ dog.size }}</li>
+            <li><strong>Характер:</strong> {{ dog.temper }}</li>
+            <li><strong>Цвет:</strong> {{ dog.color }}</li>
+            <li><strong>Описание:</strong> {{ dog.description }}</li>
+            <li><strong>Комментарии:</strong> {{ dog.comments }}</li>
+        </ul>
+        <h2>Заявка на усыновление</h2>
+        <form method="post" action="{% url 'dog_detail' dog.animal_id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Взять питомца</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

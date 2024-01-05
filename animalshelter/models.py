@@ -2,10 +2,10 @@ from django.db import models
 
 class Animal(models.Model):
     animal_id = models.AutoField(primary_key=True)
-    type_of_animal=models.CharField(max_length=20,null=True,choices=[('Dog', 'Dog'), ('Cat', 'Cat')])
+    type_of_animal=models.CharField(max_length=20,null=True,choices=[('Собака', 'Dog'), ('Кошка', 'Cat')])
     name = models.CharField(max_length=255)
     breed=models.CharField(max_length=255,null=True)
-    sex = models.CharField(max_length=1, choices=[('M', 'Male'), ('F', 'Female')])
+    sex = models.CharField(max_length=1, choices=[('М', 'Male'), ('Ж', 'Female')])
     age = models.CharField(max_length=255)
     size = models.CharField(max_length=255)
     temper = models.CharField(max_length=255)
@@ -30,7 +30,7 @@ class News(models.Model):
         return self.title
 
 class Review(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=100,null=True)
     review = models.TextField()
     email = models.CharField(max_length=100)
     photo = models.BinaryField(blank=True, null=True)
@@ -39,10 +39,10 @@ class Review(models.Model):
         return self.name
 
 class AdoptionForm(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=40, null=True)
     phone = models.CharField(max_length=40, null=True)
     email=models.CharField(max_length=255)
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE, null=True, blank=True)
-
+    comments=models.TextField(null=True)
     def __str__(self):
         return self.name

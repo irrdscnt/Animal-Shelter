@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-image {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Спасибо!</h1>
+    <p>Ваша заявка на усыновление была успешно отправлена. Наши сотрудники скоро свяжутся с 
+        Вами для дальнейшей консультации</p>
+    <p>Мы ценим ваш интерес к усыновлению прекрасного домашнего животного</p>
+    <img src="/static/images/dog-and-cat-cover.jpg" alt="Thank You Image" class="thank-you-image">
+    <p>Хотите <a href="/">вернуться на главную страницу</a> или <a href="{% url 'dog_list' %}"> просмотреть других животных</a></p>
+</body>
+</html>

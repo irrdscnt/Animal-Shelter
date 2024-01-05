@@ -19,88 +19,7 @@
             </li>
         {% endfor %}
     </ul>
-    <style>
-
-     ul {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    h1{
-        text-align: center;
-    }
-    li {
-        width: 30%;
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    img {
-        /* width: 80%; */
-        max-height: 200px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-
-    .details-btn {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: 20px;
-        cursor: pointer;
-    }
-
-        .filter-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px; /* регулируйте отступ сверху под фильтры */
-        }
-
-        .filter-row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between; /* Распределение фильтров по горизонтали */
-            gap: 10px; /* Пробел между элементами */
-
-            margin-bottom: 20px; /* Регулируйте отступ между фильтрами */
-        }
-
-
-        .filter-btn, .reset-btn {
-            display: inline-block;
-            margin-top: 10px; /* Adjust as needed */
-            padding: 10px;
-            background-color: #4CAF50; /* Green color, you can change it */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 20px;
-        }
-
-        .reset-btn {
-            background-color: #f44336; /* Red color, you can change it */
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('/static/images/client-bg.jpg') center center fixed;
-            background-size: cover;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/dog_list.css" />
 </head>
 <body>
 
@@ -139,6 +58,32 @@
 
 <ul>
     {% for dog in animals %}
+        <li class="dog-item">
+            <div class="dog-image">
+                {% if dog.photo_base64 %}
+                    <a href="{% url 'dog_detail' dog.animal_id %}">
+                        <img src="data:image/png;base64,{{ dog.photo_base64 }}" alt="{{ dog.name }} photo" width="300px">
+                        <div class="overlay">
+                            <p>{{ dog.name }}</p>
+                            <p>Пол: {{ dog.sex }},Возраст: {{ dog.age }}</p>
+                        </div>
+                    </a>
+                {% else %}
+                    <p>No photo available</p>
+                {% endif %}
+            </div>
+            <div class="dog-details">
+                <!-- <strong>Имя:</strong> {{ dog.name }}<br>
+                <strong>Пол:</strong> {{ dog.sex }}<br>
+                <strong>Возраст:</strong> {{ dog.age }}<br> -->
+                <a href="{% url 'dog_detail' dog.animal_id %}" class="details-btn">Узнай меня ближе!</a>
+                {% if user.is_admin %}
+                    <a href="{% url 'update_dog' dog.animal_id %}" class="details-btn">Изменить данные</a>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+    <!-- {% for dog in animals %}
         <li>
             <strong>Имя:</strong> {{ dog.name }}<br>
             <strong>Пол:</strong> {{ dog.sex }}<br>
@@ -153,7 +98,7 @@
             <a href="{% url 'update_dog' dog.animal_id %}" class="details-btn">Изменить данные</a>
             {% endif %}
         </li>
-    {% endfor %}
+    {% endfor %} -->
 </ul>
 
 </body>

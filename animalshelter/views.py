@@ -2,9 +2,11 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import (CreateView, DeleteView, ListView,
                                   TemplateView, UpdateView)
 from .models import Animal,News,Review
-from .forms import AnimalForm,AnimalFilterForm,NewsForm,ReviewForm
+from .forms import AnimalForm,AnimalFilterForm,NewsForm,ReviewForm,AdoptionForm
 import base64
 from .filters import AnimalFilter
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def search(request):
@@ -49,7 +51,17 @@ def dog_detail(request, animal_id):
         dog.photo_base64 = base64.b64encode(dog.photo).decode("utf-8")
     else:
         dog.photo_base64 = None
-    return render(request, 'dog_detail.html', {'dog': dog})
+    
+    if request.method == 'POST':
+        form = AdoptionForm(request.POST)
+        if form.is_valid():
+            form.instance.animal = dog
+            form.save()
+            return redirect('thank_you_page') 
+    else:
+        form = AdoptionForm()
+
+    return render(request, 'dog_detail.html', {'dog': dog, 'form': form})
 
 def news_detail(request, news_id):
     news = News.objects.get(pk=news_id)
@@ -111,9 +123,7 @@ def add_dog(request):
     if request.method == 'POST':
         form = AnimalForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form.cleaned_data)  # Вывод отладочной информации
             dog_instance = form.save(commit=False)
-            # Преобразование файла в бинарные данные
             dog_instance.photo = form.cleaned_data['photo'].read()
             dog_instance.save()
             return redirect('dog_list') 
@@ -121,6 +131,21 @@ def add_dog(request):
         form = AnimalForm()
 
     return render(request, 'add_dog.html', {'form': form})
+
+# def add_dog(request):
+#     if request.method == 'POST':
+#         form = AnimalForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             print(form.cleaned_data)  # Вывод отладочной информации
+#             dog_instance = form.save(commit=False)
+#             # Преобразование файла в бинарные данные
+#             dog_instance.photo = form.cleaned_data['photo'].read()
+#             dog_instance.save()
+#             return redirect('dog_list') 
+#     else:
+#         form = AnimalForm()
+
+#     return render(request, 'add_dog.html', {'form': form})
     
 def update_dog(request, animal_id):
     dog_instance = get_object_or_404(Animal, pk=animal_id)
@@ -188,6 +213,23 @@ def add_review(request):
         form = ReviewForm()
 
     return render(request, 'index.html', {'form': form})
+
+def delete_animal(request, animal_id):
+    animal = get_object_or_404(Animal, pk=animal_id)
+    animal.delete()
+    return redirect('dog_list')  
+
+def delete_news(request, news_id):
+    news = get_object_or_404(News, pk=news_id)
+    news.delete()
+    return redirect('home')  
+
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    return redirect('home')  
+
+
 # class AddReview(CreateView):
 #     model = Review
 #     form_class = ReviewForm

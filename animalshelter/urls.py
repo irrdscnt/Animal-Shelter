@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
-from .views import (index,add_dog,dog_list,dog_detail,add_news,news_detail,update_dog,update_news,search,add_review)
+from django.views.generic import TemplateView
+from .views import (index,add_dog,dog_list,dog_detail,add_news,news_detail,update_dog,update_news,
+    search,add_review,delete_animal,delete_news,delete_review)
 
 urlpatterns = [
     path("", index, name="home"),
@@ -13,5 +15,11 @@ urlpatterns = [
     path('update_news/<int:news_id>/', update_news, name='update_news'),
     path('search/', search, name='search'),
     path('add_review/', add_review, name='add_review'),
+    path('thank_you_page/', TemplateView.as_view(template_name='thank_you_page.html'), name='thank_you_page'),
+    path('delete_review/<int:review_id>', delete_review, name='delete_review'),
+    path('delete_animal/<int:animal_id>', delete_animal, name='delete_animal'),
+    path('delete_news/<int:news_id>', delete_news, name='delete_news'),
+
+
 
 ]

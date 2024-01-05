@@ -1,6 +1,11 @@
 from django import forms
-from .models import Animal,News,Review
+from .models import Animal,News,Review,AdoptionForm
 
+class AdoptionForm(forms.ModelForm):
+    class Meta:
+        model = AdoptionForm
+        fields = ['name', 'phone', 'email', 'comments']
+    
 class AnimalForm(forms.ModelForm):
     photo = forms.FileField(widget=forms.ClearableFileInput, required=False)  # Используем FileField для загрузки файла
 
