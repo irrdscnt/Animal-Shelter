@@ -3,7 +3,8 @@
 
 <main>
   <section class="logIn">
-    <form method="post" class="form">{% csrf_token %}
+    <form method="post" action="{% url 'login' %}" class="form">
+      {% csrf_token %}
       <h2>Log in</h2>
       <label>
         <h4>Username</h4>

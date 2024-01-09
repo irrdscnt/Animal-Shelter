@@ -36,6 +36,12 @@
           </a>
           <div class="" id="">
             <div class="User_option">
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="buttin" type="submit">Logout</button>
+              </form>
+              {% endif %}
               <!-- <form class="form-inline my-2  mb-3 mb-lg-0">
                 <input type="search" placeholder="Search">
                 <button class="btn   my-sm-0 nav_search-btn" type="submit"></button>
@@ -58,7 +64,7 @@
             <div id="myNav" class="overlay">
               <div class="overlay-content">
                 <a href="{% url 'home' %}">Главная</a>
-                <a href="about.html">О нас</a>
+                <!-- <a href="about.html">О нас</a> -->
                 <a href="#info_section">Связаться с нами</a>
                 <a href="{% url 'login' %}">Войти</a>
 
@@ -68,6 +74,7 @@
                 <a href="{% url 'adoption_requests' %}">Просмотреть все заявки</a>
                 <a href="{% url 'signup' %}">Зарегистрировать администратора</a>
                 {% endif %}
+
               </div>
             </div>
           </div>

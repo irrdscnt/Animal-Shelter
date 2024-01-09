@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.http import HttpResponse
+# from django.contrib.auth import logout
+
 
 from .forms import CustomUserCreationForm
 
@@ -12,6 +14,9 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
+# def logout_view(request):
+#     logout(request)
+#     return redirect('home') 
 
 def register(request):
     if request.method == "GET":
